@@ -84,8 +84,32 @@ print("Closest frequency bin:", closest_frequency, "Hz")
 # entropy calculation
 normal_entropy=calculate_entropy(normal_fswt)
 print("Normal entropy:",normal_entropy)
+
 ldos_entropy=calculate_entropy(ldos_fswt)
 print("LDoS entropy:",ldos_entropy)
+
+# Correlation calculation
+normalied_normal_fswt=np.abs(normal_fswt)
+normal_correlation = calculate_correlation(normalied_normal_fswt)
+print("Normal correlation:", normal_correlation)
+
+normalied_ldos_fswt=np.abs(ldos_fswt)
+ldos_correlation = calculate_correlation(normalied_ldos_fswt)
+print("LDoS correlation:", ldos_correlation)
+
+# Contrast calculation
+normal_contrast = calculate_contrast(normal_energy)
+print("Normal contrast:", normal_contrast)
+
+ldos_contrast = calculate_contrast(ldos_energy)
+print("LDoS contrast:", ldos_contrast)
+
+# Energy ratio calculation
+normal_energy_ratio = calculate_energy_ratio(normal_energy)
+print("Normal energy ratio:", normal_energy_ratio)
+
+ldos_energy_ratio = calculate_energy_ratio(ldos_energy)
+print("LDoS energy ratio:", ldos_energy_ratio)
 
 # Check harmonics
 print()
