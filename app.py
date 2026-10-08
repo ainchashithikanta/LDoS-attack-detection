@@ -3,9 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
-# Find fswt.py
+# import extracted features
 sys.path.append("features")
 from fswt import fswt
+from entropy import calculate_entropy
+from correlation import calculate_correlation
+from contrast import calculate_contrast
+from energyRatio import calculate_energy_ratio
 
 # Load traffic data
 normal_data = pd.read_csv("data/normal_traffic.csv")
@@ -27,12 +31,12 @@ print("DC component removed.")
 
 # Calculate FSWT
 print()
-print("Calculating FSWT for normal traffic...")
+print("Calculating FSWT for normal traffic")
 normal_fswt = fswt(normal_signal, sampling_rate)
 print("Normal FSWT completed.")
 
 print()
-print("Calculating FSWT for LDoS traffic...")
+print("Calculating FSWT for LDoS traffic")
 ldos_fswt = fswt(ldos_signal, sampling_rate)
 print("LDoS FSWT completed.")
 
@@ -77,6 +81,12 @@ closest_frequency = frequencies_positive[closest_index]
 
 print("Closest frequency bin:", closest_frequency, "Hz")
 
+# entropy calculation
+normal_entropy=calculate_entropy(normal_fswt)
+print("Normal entropy:",normal_entropy)
+ldos_entropy=calculate_entropy(ldos_fswt)
+print("LDoS entropy:",ldos_entropy)
+
 # Check harmonics
 print()
 print("Harmonic analysis:")
@@ -106,13 +116,29 @@ axes[1].set_ylabel("Traffic (Mbps)")
 axes[1].grid()
 
 # Plot 3: Normal FSWT energy
-axes[2].imshow(normal_energy_positive.T, aspect="auto", origin="lower", extent=[frequencies_positive[0], frequencies_positive[-1], 0, len(normal_signal) / sampling_rate])
+axes[2].imshow(
+    normal_energy_positive.T, 
+    aspect="auto", 
+    origin="lower", 
+    extent=[frequencies_positive[0], 
+    frequencies_positive[-1], 
+    0, 
+    len(normal_signal) / sampling_rate]
+    )
 axes[2].set_title("FSWT Energy - Normal Traffic")
 axes[2].set_xlabel("Frequency (Hz)")
 axes[2].set_ylabel("Time (seconds)")
 
 # Plot 4: LDoS FSWT energy
-axes[3].imshow(ldos_energy_positive.T, aspect="auto", origin="lower", extent=[frequencies_positive[0], frequencies_positive[-1], 0, len(ldos_signal) / sampling_rate])
+axes[3].imshow(
+    ldos_energy_positive.T, 
+    aspect="auto", 
+    origin="lower", 
+    extent=[frequencies_positive[0], 
+    frequencies_positive[-1], 
+    0, 
+    len(ldos_signal) / sampling_rate]
+    )
 axes[3].set_title("FSWT Energy - LDoS Traffic")
 axes[3].set_xlabel("Frequency (Hz)")
 axes[3].set_ylabel("Time (seconds)")
