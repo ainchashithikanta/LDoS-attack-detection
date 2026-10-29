@@ -1,24 +1,4 @@
-"""
-Experiment A: Normal vs LDoS in Time Domain
-===========================================
-Member 4 — Experimental Design + Evaluation
-Project: Low-rate Denial of Service (LDoS) Attack Detection
 
-This experiment evaluates the baseline detection of LDoS attacks directly
-in the TIME DOMAIN using statistical properties, sliding-window metrics,
-autocorrelation analysis, and threshold-based decision rules.
-
-Evaluation Metrics:
-- Accuracy  = (TP + TN) / (TP + TN + FP + FN)
-- Precision = TP / (TP + FP)
-- Recall    = TP / (TP + FN)
-- F1-Score  = 2 * Precision * Recall / (Precision + Recall)
-
-Deliverables:
-- results/experiment_a_metrics.csv
-- results/final_results.xlsx (Sheet: "Experiment A")
-- High-resolution visualization plots saved to results/
-"""
 
 import os
 import sys
