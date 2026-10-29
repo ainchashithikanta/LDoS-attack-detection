@@ -1,0 +1,2 @@
+Experiment,Model,Window Size,Training Windows,Testing Windows,Training Traces,Testing Traces,Accuracy,Precision,Recall,F1-score
+F,FFT statistical features + Decision Tree,100,496,181,24,8,0.9226519337016574,0.9619047619047619,0.9099099099099099,0.9351851851851852
