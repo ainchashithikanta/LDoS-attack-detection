@@ -125,3 +125,55 @@ The current Experiment E classifier uses entropy, low-frequency energy ratio, an
 - [ ] Complete the FFT, STFT, and wavelet experiments if required.
 
 A checked item indicates that the corresponding basic implementation or output exists; it
+
+
+## Experiment F: New-Trace Evaluation Using FFT Features
+
+### Objective
+Evaluate whether statistical and frequency-domain features can distinguish normal traffic from traces labelled as Low-Rate Denial-of-Service (LDoS) traffic.
+
+### Methodology
+- **Dataset:** Selected `normal_*`, `ldos_6_*`, and `ldos_8_*` files from `new_data`.
+- **Window size:** 100 samples per window.
+- **Features extracted:**
+  - Standard deviation
+  - Root mean square (RMS)
+  - Mean absolute difference
+  - Peak-to-peak amplitude
+  - FFT spectral entropy
+  - Low-frequency energy ratio
+- **Classifier:** Decision Tree with maximum depth 3 and balanced class weights.
+- **Evaluation:** Entire traces were held out for testing to prevent windows from the same trace appearing in both training and testing sets.
+
+### Results
+
+| Metric | Result |
+|---|---:|
+| Accuracy | 92.27% |
+| Precision | 96.19% |
+| Recall | 90.99% |
+| F1-score | 93.52% |
+| Training windows | 496 |
+| Testing windows | 181 |
+
+**Confusion matrix** (rows = actual class; columns = predicted class):
+
+| | Predicted Normal | Predicted LDoS-labelled |
+|---|---:|---:|
+| Actual Normal | 66 | 4 |
+| Actual LDoS-labelled | 10 | 101 |
+
+### Limitations
+- This experiment uses FFT-based features; it does not apply FSWT.
+- The meaning of the selected measurement column has not been independently verified.
+- Dataset provenance and filename-derived labels require confirmation.
+- These results are preliminary and do not establish generalization to real-world LDoS traffic.
+
+### Reproducibility
+Run the experiment from the repository root:
+
+```bash
+python experiments/experiment_f.py
+```
+
+Results are saved to `results/experiment_f_results.csv`.
