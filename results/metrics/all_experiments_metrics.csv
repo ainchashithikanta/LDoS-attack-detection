@@ -1,0 +1,6 @@
+Experiment,Accuracy,Precision,Recall,F1-Score,FPR,ROC-AUC,TP,TN,FP,FN,Train Time (s),Inference Time (s),Test Windows
+Exp 1: FSWT + 4 Feats + Decision Tree,0.8333,1.0,0.6667,0.8,0.0,0.8611,4,6,0,2,0.0247,0.0003,12
+Exp 2: FSWT + 6 Feats + Decision Tree,0.8333,1.0,0.6667,0.8,0.0,0.8056,4,6,0,2,0.001,0.0002,12
+Exp 3: STFT + 6 Feats + Decision Tree,0.8333,1.0,0.6667,0.8,0.0,0.9028,4,6,0,2,0.001,0.0002,12
+Exp 4: CWT + 6 Feats + Decision Tree,0.8333,1.0,0.6667,0.8,0.0,0.9167,4,6,0,2,0.0009,0.0002,12
+Exp 5: FSWT + 6 Feats + Random Forest,0.8333,1.0,0.6667,0.8,0.0,0.9444,4,6,0,2,0.0882,0.0055,12
